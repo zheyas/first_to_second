@@ -1,0 +1,6 @@
+[
+  {"low": 0,  "high": 29.99, "color": "#E4717A"},
+  {"low": 30, "high": 49.99, "color": "#FF8C69"},
+  {"low": 50, "high": 69.99, "color": "#FFDB8B"},
+  {"low": 70, "high": 100,   "color": "#ACE1AF"}
+]

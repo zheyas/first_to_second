@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Конверсия первого абонемента во второй</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__title">
+    <h1>Конверсия 1‑го абонемента во 2‑й</h1>
+    <p class="muted" id="dataFrom">Данные по всей истории сделок Bitrix24</p>
+  </div>
+  <div class="topbar__controls">
+    <label>С <input type="date" id="dateFrom" value="{{ date_from }}"></label>
+    <label>По <input type="date" id="dateTo" value="{{ date_to }}"></label>
+    <button id="applyBtn" class="btn btn--primary">Применить</button>
+    <button id="refreshBtn" class="btn" title="Перечитать данные из Bitrix24 мимо кэша">⟳ Обновить</button>
+  </div>
+</header>
+
+<div class="summary" id="summary"></div>
+
+<nav class="tabs">
+  <button class="tabs__btn is-active" data-tab="conversion">Конверсия: даты / города / филиалы</button>
+  <button class="tabs__btn" data-tab="people">Менеджеры и тренеры</button>
+</nav>
+
+<main>
+  <section class="tabpanel is-active" data-panel="conversion">
+    <div class="card">
+      <div class="card__head">
+        <h2>Динамика</h2>
+        <div class="seg" id="dynGranularity">
+          <button class="seg__btn is-active" data-g="day">Дни</button>
+          <button class="seg__btn" data-g="week">Недели</button>
+          <button class="seg__btn" data-g="month">Месяцы</button>
+        </div>
+      </div>
+      <div class="chart" id="dynChart"></div>
+      <div class="table-wrap" id="dynTable"></div>
+    </div>
+
+    <div class="card">
+      <h2>По городам</h2>
+      <div class="table-wrap" id="citiesTable"></div>
+    </div>
+
+    <div class="card">
+      <h2>По филиалам</h2>
+      <div class="table-wrap" id="branchesTable"></div>
+    </div>
+  </section>
+
+  <section class="tabpanel" data-panel="people">
+    <div class="card">
+      <h2>По ответственным менеджерам</h2>
+      <p class="muted">Менеджер, ответственный за сделку, на которой клиент купил свой первый абонемент.</p>
+      <div class="table-wrap" id="managersTable"></div>
+    </div>
+
+    <div class="card">
+      <h2>По тренерам</h2>
+      <p class="muted">Тренер/преподаватель на сделке первого абонемента.</p>
+      <div class="table-wrap" id="trainersTable"></div>
+    </div>
+  </section>
+</main>
+
+<div id="loading" class="loading">
+  <div class="loading__box">
+    <div class="loading__title">Загрузка данных из Bitrix24…</div>
+    <div class="loading__note">Первая загрузка читает всю историю сделок и может занять 1–3 минуты.
+      Дальше (в течение 10 минут) отчёт открывается мгновенно — данные держатся в кэше.</div>
+    <div class="loading__timer" id="loadingTimer">0 сек</div>
+  </div>
+</div>
+<div id="errorBox" class="error-box" style="display:none"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
