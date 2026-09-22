@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: bitrix-analytics
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    envVars:
+      - key: BITRIX_WEBHOOK_URL
+        sync: false
+      - key: UF_LEAD_MANAGER_FIELD
+        sync: false
+      - key: UF_CITY_FIELD
+        sync: false
+      - key: UF_BRANCH_FIELD
+        sync: false
+      - key: UF_TRIAL_PAYMENT_DATE_FIELD
+        sync: false
+      - key: UF_TRIAL_PAYMENT_AMOUNT_FIELD
+        sync: false
+      - key: NEW_CLIENTS_CATEGORY
+        sync: false
+      - key: RECURRING_CLIENTS_CATEGORY
+        sync: false
